@@ -19,3 +19,17 @@ npm run dev
 ```bash
 npm test
 ```
+
+## Backend
+
+Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the API server:
+
+```bash
+uvicorn backend.main:app --reload
+```
