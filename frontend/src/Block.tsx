@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
 import { useDraggable } from '@dnd-kit/core'
 import type { Block } from './types'
 
