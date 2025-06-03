@@ -9,6 +9,7 @@ interface Props {
 export default function BlockComponent({ block }: Props) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: block.id,
+    data: { id: block.id, type: block.type },
   })
 
   const style: CSSProperties = {
