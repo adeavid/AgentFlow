@@ -6,6 +6,11 @@ from .n8n_client import N8NClient
 app = FastAPI()
 client = N8NClient()
 
+@app.on_event("shutdown")
+async def shutdown_event() -> None:
+    """Close the underlying HTTP client on application shutdown."""
+    await client.client.aclose()
+
 @app.post("/deploy")
 async def deploy(flow: CanvasFlow):
     try:
