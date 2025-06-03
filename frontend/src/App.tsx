@@ -1,4 +1,5 @@
-import { DndContext, DragEndEvent } from '@dnd-kit/core'
+import { DndContext } from '@dnd-kit/core'
+import type { DragEndEvent } from '@dnd-kit/core'
 import Canvas from './Canvas'
 import PaletteItem from './PaletteItem'
 import { useStore } from './store'
@@ -18,8 +19,11 @@ export default function App() {
     const { over, active } = event
     if (over && over.id === 'canvas') {
       const type = (active.data.current as { type: BlockType }).type
-      const { x, y } = active.rect.current.translated
-      addBlock(type, x, y)
+      const rect = active.rect.current?.translated
+      if (rect) {
+        const { left, top } = rect
+        addBlock(type, left, top)
+      }
     }
   }
 
