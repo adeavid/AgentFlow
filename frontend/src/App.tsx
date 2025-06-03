@@ -3,6 +3,7 @@ import type { DragEndEvent } from '@dnd-kit/core'
 import Canvas from './Canvas'
 import PaletteItem from './PaletteItem'
 import { useStore } from './store'
+import ReactFlowExample from './ReactFlowExample'
 import type { BlockType } from './types'
 
 const blockTypes: { label: string; type: BlockType }[] = [
@@ -34,13 +35,18 @@ export default function App() {
   }
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-        {blockTypes.map((b) => (
-          <PaletteItem key={b.type} label={b.label} type={b.type} />
-        ))}
+    <>
+      <DndContext onDragEnd={handleDragEnd}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+          {blockTypes.map((b) => (
+            <PaletteItem key={b.type} label={b.label} type={b.type} />
+          ))}
+        </div>
+        <Canvas />
+      </DndContext>
+      <div style={{ marginTop: 40 }}>
+        <ReactFlowExample />
       </div>
-      <Canvas />
-    </DndContext>
+    </>
   )
 }
