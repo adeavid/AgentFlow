@@ -2,7 +2,7 @@ import { DndContext, DragEndEvent } from '@dnd-kit/core'
 import Canvas from './Canvas'
 import PaletteItem from './PaletteItem'
 import { useStore } from './store'
-import { BlockType } from './types'
+import type { BlockType } from './types'
 
 const blockTypes: { label: string; type: BlockType }[] = [
   { label: 'Prompt', type: 'prompt' },
