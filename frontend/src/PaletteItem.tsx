@@ -1,6 +1,6 @@
 import { useDraggable } from '@dnd-kit/core'
 import { CSSProperties } from 'react'
-import { BlockType } from './types'
+import type { BlockType } from './types'
 
 interface Props {
   type: BlockType

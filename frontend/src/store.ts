@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { Block, BlockType } from './types'
+import type { Block, BlockType } from './types'
 
 interface State {
   blocks: Block[]
