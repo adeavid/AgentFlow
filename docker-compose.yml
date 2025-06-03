@@ -1,0 +1,55 @@
+#version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DB_POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+  n8n:
+    image: n8nio/n8n:latest
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "5678:5678"
+    environment:
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: ${DB_POSTGRES_DB}
+      DB_POSTGRESDB_USER: ${DB_POSTGRES_USER}
+      DB_POSTGRESDB_PASSWORD: ${DB_POSTGRES_PASSWORD}
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: admin
+      N8N_BASIC_AUTH_PASSWORD: admin123
+      N8N_DISABLE_TELEMETRY: "true"
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app  
+    command: sh -c "npm i && npm run dev -- --host"
+    depends_on:
+      - n8n
+    ports:
+      - "3030:5173"
+
+volumes:
+  pg_data:
+  redis_data:
