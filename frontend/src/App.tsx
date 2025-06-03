@@ -14,15 +14,21 @@ const blockTypes: { label: string; type: BlockType }[] = [
 
 export default function App() {
   const addBlock = useStore((s) => s.addBlock)
+  const updateBlock = useStore((s) => s.updateBlock)
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { over, active } = event
     if (over && over.id === 'canvas') {
-      const type = (active.data.current as { type: BlockType }).type
       const rect = active.rect.current?.translated
-      if (rect) {
-        const { left, top } = rect
-        addBlock(type, left, top)
+      if (!rect) return
+      const { left, top } = rect
+
+      const data = active.data.current as { type?: BlockType; id?: string }
+
+      if (data?.type && active.id.toString().startsWith('palette-')) {
+        addBlock(data.type, left, top)
+      } else {
+        updateBlock(active.id.toString(), left, top)
       }
     }
   }
