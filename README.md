@@ -40,3 +40,17 @@ variable. It defaults to `http://localhost:5678`.
 pytest -q             # backend
 npx vitest run        # frontend
 ```
+
+## Backend
+
+Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the API server:
+
+```bash
+uvicorn backend.main:app --reload
+```
