@@ -10,8 +10,8 @@ The `frontend` directory contains a Vite + React project. It demonstrates a basi
 
 ```bash
 cd frontend
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 ### Testing

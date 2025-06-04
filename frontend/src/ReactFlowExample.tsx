@@ -6,13 +6,9 @@ import ReactFlow, {
   addEdge,
   useEdgesState,
   useNodesState,
-
-} from 'reactflow'
-import type { Connection, Edge, Node } from 'reactflow'
-
-  Connection,
-  Edge,
-  Node,
+  type Connection,
+  type Edge,
+  type Node,
 } from 'reactflow'
 
 import 'reactflow/dist/style.css'
@@ -40,19 +36,12 @@ function Flow() {
 
 
   const onDragOver = useCallback((event: React.DragEvent) => {
-
-  const onDragOver = useCallback((event: DragEvent) => {
-
     event.preventDefault()
     event.dataTransfer!.dropEffect = 'move'
   }, [])
 
   const onDrop = useCallback(
-
     (event: React.DragEvent) => {
-
-    (event: DragEvent) => {
-
       event.preventDefault()
       const type = event.dataTransfer?.getData('application/reactflow')
       if (!type) return
