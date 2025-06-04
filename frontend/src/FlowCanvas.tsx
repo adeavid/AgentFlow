@@ -7,8 +7,11 @@ import ReactFlow, {
   Controls,
   type Connection,
   type Edge,
+
   type NodeChange,
   type EdgeChange,
+
+
   applyNodeChanges,
   applyEdgeChanges,
 } from 'reactflow'
@@ -27,12 +30,20 @@ function InnerCanvas() {
   const setEdges = useFlowStore((s) => s.setEdges)
 
   const onNodesChange = useCallback(
+
     (changes: NodeChange[]) => setNodes(applyNodeChanges(changes, nodes)),
+
+    (changes) => setNodes(applyNodeChanges(changes, nodes)),
+
     [nodes, setNodes],
   )
 
   const onEdgesChange = useCallback(
+
     (changes: EdgeChange[]) => setEdges(applyEdgeChanges(changes, edges)),
+
+    (changes) => setEdges(applyEdgeChanges(changes, edges)),
+
     [edges, setEdges],
   )
 
@@ -61,7 +72,11 @@ function InnerCanvas() {
   )
 
   return (
+
     <div style={{ flex: 1, height: '100%' }} ref={reactFlowWrapper}>
+
+    <div style={{ flex: 1 }} ref={reactFlowWrapper}>
+
       <ReactFlow
         nodes={nodes}
         edges={edges}
