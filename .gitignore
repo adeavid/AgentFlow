@@ -1,0 +1,21 @@
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Node modules
+node_modules/
+
+# Environment
+.env
+
+# Build outputs
+frontend/dist/
+frontend/pnpm-lock.yaml
+
+# OS files
+.DS_Store
+
+# Test caches
+.pytest_cache/
+frontend/.coverage
+coverage/

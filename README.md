@@ -4,7 +4,7 @@ This repository contains a minimal prototype for AgentFlow's drag-and-drop canva
 
 ## Frontend
 
-The `frontend` directory contains a Vite + React project. It demonstrates a basic canvas where four block types (Prompt, LLM, Función externa, Condición) can be dragged onto a drop zone. Global state is managed with Zustand and the diagram can be serialized to JSON.
+The `frontend` directory contains a Vite + React project. It exposes a React Flow canvas backed by a global Zustand store. A sidebar palette lets you drag **LLM**, **Prompt**, **RAG** and **Webhook** blocks onto the canvas.
 
 ### Development
 
@@ -12,6 +12,12 @@ The `frontend` directory contains a Vite + React project. It demonstrates a basi
 cd frontend
 pnpm install
 pnpm dev
+```
+
+Build the static bundle:
+
+```bash
+pnpm --filter frontend build
 ```
 
 ### Testing
